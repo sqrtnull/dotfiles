@@ -267,12 +267,22 @@ vim.o.completeopt = 'menuone,noselect'
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
 
+-- Minimal number of screen lines to keep above and below the cursor
+vim.o.scrolloff = 8
 
 -- [[ Basic Keymaps ]]
 
 -- jk to exit insert mode and terminal
 vim.keymap.set('i', 'jk', '<Esc>')
 vim.keymap.set('t', 'jk', '<C-\\><C-n>')
+
+-- paste to selection while preserving register
+vim.keymap.set("x", "<leader>p", "\"_dP")
+
+-- yank to clipboard
+vim.keymap.set("n", "<leader>y", "\"+y")
+vim.keymap.set("v", "<leader>y", "\"+y")
+vim.keymap.set("n", "<leader>Y", "\"+Y")
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
