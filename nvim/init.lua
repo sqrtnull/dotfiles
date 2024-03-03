@@ -540,6 +540,9 @@ require("lazy").setup({
 			-- Snippet Engine & its associated nvim-cmp source
 			{
 				"L3MON4D3/LuaSnip",
+				dependencies = {
+					"rafamadriz/friendly-snippets",
+				},
 				build = (function()
 					-- Build Step is needed for regex support in snippets
 					-- This step is not supported in many windows environments
@@ -557,17 +560,12 @@ require("lazy").setup({
 			--  into multiple repos for maintenance purposes.
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-path",
-
-			-- If you want to add a bunch of pre-configured snippets,
-			--    you can use this plugin to help you. It even has snippets
-			--    for various frameworks/libraries/etc. but you will have to
-			--    set up the ones that are useful for you.
-			"rafamadriz/friendly-snippets",
 		},
 		config = function()
 			-- See `:help cmp`
 			local cmp = require("cmp")
 			local luasnip = require("luasnip")
+			require("luasnip.loaders.from_vscode").lazy_load()
 			luasnip.config.setup({})
 
 			cmp.setup({
