@@ -11,6 +11,12 @@ vim.g.maplocalleader = " "
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 
+-- defaults
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+
 vim.opt.number = true
 vim.opt.relativenumber = true
 
@@ -55,6 +61,8 @@ vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 8
+
+vim.opt.conceallevel = 1
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
@@ -442,6 +450,9 @@ require("lazy").setup({
 				-- But for many setups, the LSP (`tsserver`) will work just fine
 				-- tsserver = {},
 				--
+				-- gdscript = {}
+				-- gdshader_lsp = {}
+				--
 
 				lua_ls = {
 					-- cmd = {...},
@@ -690,6 +701,7 @@ require("lazy").setup({
 					"html",
 					"lua",
 					"markdown",
+					"markdown_inline",
 					"vim",
 					"vimdoc",
 				},
@@ -719,7 +731,7 @@ require("lazy").setup({
 	--
 	--  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
 	--    For additional information see: :help lazy.nvim-lazy.nvim-structuring-your-plugins
-	-- { import = 'custom.plugins' },
+	{ import = "plugins" },
 })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
