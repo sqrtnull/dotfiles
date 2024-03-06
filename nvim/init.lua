@@ -155,6 +155,9 @@ require("lazy").setup({
 		},
 	},
 
+	-- :Git
+	"tpope/vim-fugitive",
+
 	-- NOTE: Plugins can also be configured to run lua code when they are loaded.
 	--
 	-- This is often very useful to both group configuration, as well as handle
@@ -440,7 +443,7 @@ require("lazy").setup({
 			local servers = {
 				clangd = {},
 				-- gopls = {},
-				pyright = {},
+				-- pyright = {},
 				-- rust_analyzer = {},
 				-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
 				--
@@ -449,10 +452,6 @@ require("lazy").setup({
 				--
 				-- But for many setups, the LSP (`tsserver`) will work just fine
 				-- tsserver = {},
-				--
-				-- gdscript = {}
-				-- gdshader_lsp = {}
-				--
 
 				lua_ls = {
 					-- cmd = {...},
@@ -540,9 +539,6 @@ require("lazy").setup({
 			-- Snippet Engine & its associated nvim-cmp source
 			{
 				"L3MON4D3/LuaSnip",
-				dependencies = {
-					"rafamadriz/friendly-snippets",
-				},
 				build = (function()
 					-- Build Step is needed for regex support in snippets
 					-- This step is not supported in many windows environments
@@ -555,11 +551,10 @@ require("lazy").setup({
 			},
 			"saadparwaiz1/cmp_luasnip",
 
-			-- Adds other completion capabilities.
-			--  nvim-cmp does not ship with all sources by default. They are split
-			--  into multiple repos for maintenance purposes.
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-path",
+
+			"rafamadriz/friendly-snippets",
 		},
 		config = function()
 			-- See `:help cmp`
@@ -693,13 +688,11 @@ require("lazy").setup({
 					"bash",
 					"c",
 					"cpp",
-					"go",
+					"cmake",
 					"python",
 					"rust",
 					"html",
 					"lua",
-					"markdown",
-					"markdown_inline",
 					"vim",
 					"vimdoc",
 				},
@@ -729,7 +722,7 @@ require("lazy").setup({
 	--
 	--  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
 	--    For additional information see: :help lazy.nvim-lazy.nvim-structuring-your-plugins
-	{ import = "plugins" },
+	-- { import = "plugins" },
 })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
