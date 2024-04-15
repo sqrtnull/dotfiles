@@ -267,6 +267,10 @@ require("lazy").setup({
 					--  For example, in C this would take you to the header
 					map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
+					if vim.lsp.inlay_hint then
+						map("<leader>ih", vim.lsp.inlay_hint.enable, "[I]nlay [H]ints")
+					end
+
 					-- The following two autocommands are used to highlight references of the
 					-- word under your cursor when your cursor rests there for a little while.
 					--    See `:help CursorHold` for information about when this is executed
@@ -283,9 +287,6 @@ require("lazy").setup({
 							buffer = event.buf,
 							callback = vim.lsp.buf.clear_references,
 						})
-					end
-					if client and client.server_capabilities.inlayHintProvider then
-						vim.lsp.inlay_hint.enable(event.buf, true)
 					end
 				end,
 			})
