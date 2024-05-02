@@ -59,6 +59,10 @@ vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagn
 vim.keymap.set("i", "jk", "<Esc>", { desc = "Exit insert mode" })
 vim.keymap.set("t", "jk", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
+-- better traversal through line wraps
+vim.keymap.set("n", "j", "gj")
+vim.keymap.set("n", "k", "gk")
+
 -- paste to selection while preserving register
 vim.keymap.set("x", "<leader>p", '"_dP')
 
@@ -268,7 +272,9 @@ require("lazy").setup({
 					map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
 					if vim.lsp.inlay_hint then
-						map("<leader>ih", vim.lsp.inlay_hint.enable, "[I]nlay [H]ints")
+						map("<leader>ih", function()
+							vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled())
+						end, "[I]nlay [H]ints")
 					end
 
 					-- The following two autocommands are used to highlight references of the
