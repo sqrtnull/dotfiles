@@ -68,12 +68,12 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	"tpope/vim-sleuth",
+	"tpope/vim-fugitive",
 
 	{ "folke/todo-comments.nvim", dependencies = { "nvim-lua/plenary.nvim" }, opts = { signs = false } },
 
 	{ "numToStr/Comment.nvim", opts = {} },
 
-	"tpope/vim-fugitive",
 	{
 		"lewis6991/gitsigns.nvim",
 		opts = {
