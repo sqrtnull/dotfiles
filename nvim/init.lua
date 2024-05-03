@@ -180,6 +180,9 @@ require("lazy").setup({
 	},
 
 	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
+
+	-- environment specific plugins and testing
+	{ import = "plugins.custom" },
 })
 
 -- vim: ts=2 sts=2 sw=2 et
