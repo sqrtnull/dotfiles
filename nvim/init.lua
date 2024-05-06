@@ -11,18 +11,12 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.breakindent = true
 
-vim.opt.number = true
-vim.opt.relativenumber = true
-
-vim.opt.mouse = "a"
-
 vim.opt.undofile = true
 
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.hlsearch = false
-
-vim.opt.signcolumn = "yes"
+vim.opt.inccommand = "split"
 
 vim.opt.updatetime = 250
 vim.opt.timeoutlen = 300
@@ -30,11 +24,11 @@ vim.opt.timeoutlen = 300
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
-vim.opt.inccommand = "split"
-
 vim.opt.cursorline = true
 vim.opt.scrolloff = 8
 vim.opt.conceallevel = 1
+vim.opt.signcolumn = "yes"
+vim.opt.mouse = "a"
 
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
@@ -52,8 +46,6 @@ vim.keymap.set("v", "<leader>y", '"+y')
 vim.keymap.set("n", "<leader>Y", '"+Y')
 
 vim.api.nvim_create_autocmd("TextYankPost", {
-	desc = "Highlight when yanking (copying) text",
-	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
 	callback = function()
 		vim.highlight.on_yank()
 	end,
@@ -73,6 +65,12 @@ require("lazy").setup({
 	{ "folke/todo-comments.nvim", dependencies = { "nvim-lua/plenary.nvim" }, opts = { signs = false } },
 
 	{ "numToStr/Comment.nvim", opts = {} },
+
+	{ "stevearc/oil.nvim", opts = {} },
+
+	{ "kylechui/nvim-surround", version = "*", event = "VeryLazy", opts = {} },
+
+	{ "kevinhwang91/nvim-bqf", event = "VeryLazy", opts = {} },
 
 	{
 		"lewis6991/gitsigns.nvim",
@@ -170,16 +168,23 @@ require("lazy").setup({
 		---@type Flash.Config
 		opts = {},
     -- stylua: ignore
-    keys = {
-      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
-      { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
-      { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
-      { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-      { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
-    },
+		keys = {
+			{ "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+			{ "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+			{ "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+			{ "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+			{ "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+		},
 	},
 
-	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
+	{
+		"Wansmer/treesj",
+		keys = { { "<leader>m", "<CMD>TSJToggle<CR>", desc = "Toggle Treesitter Join" } },
+		cmd = { "TSJToggle", "TSJSplit", "TSJJoin" },
+		opts = { use_default_keymaps = false },
+	},
+
+	-- { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
 
 	-- environment specific plugins and testing
 	{ import = "plugins.custom" },
