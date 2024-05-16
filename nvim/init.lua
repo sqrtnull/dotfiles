@@ -36,9 +36,6 @@ vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagn
 vim.keymap.set("i", "jk", "<Esc>", { desc = "Exit insert mode" })
 vim.keymap.set("t", "jk", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
-vim.keymap.set("n", "j", "gj")
-vim.keymap.set("n", "k", "gk")
-
 vim.keymap.set("x", "<leader>p", '"_dP')
 
 vim.keymap.set("n", "<leader>y", '"+y')
@@ -66,7 +63,14 @@ require("lazy").setup({
 
 	{ "numToStr/Comment.nvim", opts = {} },
 
-	{ "stevearc/oil.nvim", opts = {} },
+	{
+		"stevearc/oil.nvim",
+		opts = {},
+		config = function()
+			require("oil").setup()
+			vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+		end,
+	},
 
 	{ "kylechui/nvim-surround", version = "*", event = "VeryLazy", opts = {} },
 
