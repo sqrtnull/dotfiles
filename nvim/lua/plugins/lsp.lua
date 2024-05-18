@@ -38,7 +38,7 @@ return {
 
 				if vim.lsp.inlay_hint then
 					map("<leader>ih", function()
-						vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled())
+						vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 					end, "Toggle [I]nlay [H]ints")
 				end
 
@@ -62,7 +62,7 @@ return {
 		local servers = {
 			clangd = {},
 			-- gopls = {},
-			-- pyright = {},
+			pyright = {},
 			rust_analyzer = {},
 			lua_ls = {
 				-- cmd = {...},
