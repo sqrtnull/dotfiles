@@ -61,8 +61,6 @@ require("lazy").setup({
 
 	{ "folke/todo-comments.nvim", dependencies = { "nvim-lua/plenary.nvim" }, opts = { signs = false } },
 
-	{ "numToStr/Comment.nvim", opts = {} },
-
 	{
 		"stevearc/oil.nvim",
 		opts = {},
@@ -72,7 +70,15 @@ require("lazy").setup({
 		end,
 	},
 
-	{ "kylechui/nvim-surround", version = "*", event = "VeryLazy", opts = {} },
+	{
+		"kylechui/nvim-surround",
+		version = "*",
+		event = "VeryLazy",
+		config = function()
+			require("nvim-surround").setup({
+			})
+		end,
+	},
 
 	{ "kevinhwang91/nvim-bqf", event = "VeryLazy", opts = {} },
 
@@ -163,6 +169,9 @@ require("lazy").setup({
 				indent = { enable = true },
 			})
 		end,
+		vim.keymap.set("n", "<leader>wh", function()
+			vim.notify(require("nvim-treesitter").statusline())
+		end, { desc = "[WH]ere am I?" }),
 	},
 
 	{
@@ -187,8 +196,6 @@ require("lazy").setup({
 		cmd = { "TSJToggle", "TSJSplit", "TSJJoin" },
 		opts = { use_default_keymaps = false },
 	},
-
-	-- { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
 
 	-- environment specific plugins and testing
 	{ import = "plugins.custom" },
