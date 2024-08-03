@@ -11,8 +11,7 @@ return {
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
 			callback = function(event)
-
-				vim.diagnostic.config({ virtual_text = false })
+				vim.diagnostic.config({ virtual_text = false, signs = false, underline = false })
 
 				local map = function(keys, func, desc)
 					vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
@@ -28,11 +27,12 @@ return {
 				map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
 				map("K", vim.lsp.buf.hover, "Hover Documentation")
 				map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+
 				map("<leader>id", function()
 					if vim.diagnostic.config().virtual_text then
-						vim.diagnostic.config({ virtual_text = false })
+						vim.diagnostic.config({ virtual_text = false, signs = false, underline = false })
 					else
-						vim.diagnostic.config({ virtual_text = true })
+						vim.diagnostic.config({ virtual_text = true, signs = true, underline = true })
 					end
 				end, "Toggle [I]nline [D]iagnostics")
 
@@ -41,7 +41,6 @@ return {
 						vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 					end, "Toggle [I]nlay [H]ints")
 				end
-
 
 				local client = vim.lsp.get_client_by_id(event.data.client_id)
 				if client and client.server_capabilities.documentHighlightProvider then
@@ -62,6 +61,7 @@ return {
 		local servers = {
 			clangd = {},
 			-- gopls = {},
+			-- zls = {},
 			pyright = {},
 			rust_analyzer = {},
 			lua_ls = {

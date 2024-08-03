@@ -35,6 +35,7 @@ vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagn
 
 vim.keymap.set("i", "jk", "<Esc>", { desc = "Exit insert mode" })
 vim.keymap.set("t", "jk", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 vim.keymap.set("x", "<leader>p", '"_dP')
 
@@ -92,7 +93,18 @@ require("lazy").setup({
 				topdelete = { text = "‾" },
 				changedelete = { text = "~" },
 			},
+      signcolumn = false,
 		},
+    keys = {
+      {
+        "<leader>gs",
+        function()
+          require('gitsigns').toggle_signs()
+        end,
+        mode = {"n","v"},
+        desc = "Toggle [G]it [S]igns",
+      }
+    }
 	},
 
 	{
@@ -156,6 +168,7 @@ require("lazy").setup({
 					"bash",
 					"c",
 					"cpp",
+          "zig",
 					"cmake",
 					"python",
 					"rust",
@@ -179,7 +192,13 @@ require("lazy").setup({
 		event = "VeryLazy",
 		---@diagnostic disable-next-line: undefined-doc-name
 		---@type Flash.Config
-		opts = {},
+		opts = {
+      modes = {
+        search = {
+          enabled = false,
+        }
+      }
+    },
     -- stylua: ignore
 		keys = {
 			{ "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
