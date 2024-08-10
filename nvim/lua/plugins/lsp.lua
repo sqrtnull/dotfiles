@@ -61,7 +61,6 @@ return {
 		local servers = {
 			clangd = {},
 			-- gopls = {},
-			-- zls = {},
 			pyright = {},
 			rust_analyzer = {},
 			lua_ls = {

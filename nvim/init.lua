@@ -168,7 +168,6 @@ require("lazy").setup({
 					"bash",
 					"c",
 					"cpp",
-          "zig",
 					"cmake",
 					"python",
 					"rust",
