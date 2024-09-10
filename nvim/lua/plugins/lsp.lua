@@ -13,6 +13,7 @@ return {
 			group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
 			callback = function(event)
 				vim.diagnostic.config({ virtual_text = false, signs = false, underline = false })
+				vim.opt.formatoptions:remove { "c", "r", "o" }
 
 				local map = function(keys, func, desc)
 					vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
@@ -63,7 +64,13 @@ return {
 			-- clangd = {},
 			-- gopls = {},
 			pyright = {},
-			rust_analyzer = {},
+			rust_analyzer = {
+				["rust_analyzer"] = {
+					check = {
+						command = "clippy"
+					}
+				}
+			},
 			lua_ls = {
 				-- cmd = {...},
 				-- filetypes { ...},

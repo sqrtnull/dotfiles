@@ -213,6 +213,17 @@ require("lazy").setup({
 		cmd = { "TSJToggle", "TSJSplit", "TSJJoin" },
 		opts = { use_default_keymaps = false },
 	},
+	{
+		"folke/zen-mode.nvim",
+		keys = {
+			{ "<leader>en", "<CMD>ZenMode<CR>", desc = "Z[en] Mode" },
+		},
+		opts = {
+			plugins = {
+				tmux = { enabled = true },
+			},
+		},
+	},
 
 	-- environment specific plugins and testing
 	{ import = "plugins.custom" },
