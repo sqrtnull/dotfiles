@@ -37,11 +37,10 @@ vim.keymap.set("i", "jk", "<Esc>", { desc = "Exit insert mode" })
 vim.keymap.set("t", "jk", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
-vim.keymap.set("x", "<leader>p", '"_dP')
+vim.keymap.set("x", "<leader>p", '"_dP', { desc = "Paste over without changing buffer" })
 
-vim.keymap.set("n", "<leader>y", '"+y')
-vim.keymap.set("v", "<leader>y", '"+y')
-vim.keymap.set("n", "<leader>Y", '"+Y')
+vim.keymap.set("n", "<leader>y", '"+y', { desc = "Yank to system clipboard" })
+vim.keymap.set("v", "<leader>y", '"+y', { desc = "Yank to system clipboard" })
 
 vim.api.nvim_create_autocmd("TextYankPost", {
 	callback = function()
@@ -58,7 +57,6 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	"tpope/vim-sleuth",
-	"tpope/vim-fugitive",
 
 	{ "folke/todo-comments.nvim", dependencies = { "nvim-lua/plenary.nvim" }, opts = { signs = false } },
 
@@ -117,6 +115,9 @@ require("lazy").setup({
 				{ "<leader>r", group = "[R]ename" },
 				{ "<leader>s", group = "[S]earch" },
 				{ "<leader>w", group = "[W]orkspace" },
+				{ "<leader>i", group = "[I]nline Diagnostics" },
+				{ "<leader>g", group = "[G]it" },
+				{ "<leader>f", group = "[F]ile" },
 			})
 		end,
 	},
@@ -212,17 +213,6 @@ require("lazy").setup({
 		keys = { { "<leader>m", "<CMD>TSJToggle<CR>", desc = "Toggle Treesitter Join" } },
 		cmd = { "TSJToggle", "TSJSplit", "TSJJoin" },
 		opts = { use_default_keymaps = false },
-	},
-	{
-		"folke/zen-mode.nvim",
-		keys = {
-			{ "<leader>en", "<CMD>ZenMode<CR>", desc = "Z[en] Mode" },
-		},
-		opts = {
-			plugins = {
-				tmux = { enabled = true },
-			},
-		},
 	},
 
 	-- environment specific plugins and testing

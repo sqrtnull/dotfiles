@@ -64,13 +64,7 @@ return {
 			-- clangd = {},
 			-- gopls = {},
 			pyright = {},
-			rust_analyzer = {
-				["rust_analyzer"] = {
-					check = {
-						command = "clippy"
-					}
-				}
-			},
+			rust_analyzer = {},
 			lua_ls = {
 				-- cmd = {...},
 				-- filetypes { ...},

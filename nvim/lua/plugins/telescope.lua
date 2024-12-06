@@ -56,13 +56,13 @@ return {
 			builtin.find_files({ cwd = vim.fn.stdpath("config") })
 		end, { desc = "[S]earch [N]eovim files" })
 
-		vim.keymap.set("n", "<leader>si", function()
+		vim.keymap.set("n", "<leader>sG", function()
 			local root = string.gsub(vim.fn.system("git rev-parse --show-toplevel"), "\n", "")
 			if vim.v.shell_error == 0 then
 				require("telescope.builtin").live_grep({ cwd = root })
 			else
 				require("telescope.builtin").live_grep()
 			end
-		end, { desc = "[S]earch G[i]t" })
+		end, { desc = "[S]earch [G]it" })
 	end,
 }
