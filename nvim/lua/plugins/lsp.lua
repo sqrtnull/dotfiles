@@ -8,12 +8,11 @@ return {
 		{ "j-hui/fidget.nvim", opts = {} },
 	},
 	config = function()
-
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
 			callback = function(event)
 				vim.diagnostic.config({ virtual_text = false, signs = false, underline = false })
-				vim.opt.formatoptions:remove { "c", "r", "o" }
+				vim.opt.formatoptions:remove({ "c", "r", "o" })
 
 				local map = function(keys, func, desc)
 					vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
@@ -64,7 +63,7 @@ return {
 			-- clangd = {},
 			-- gopls = {},
 			pyright = {},
-			rust_analyzer = {},
+			-- rust_analyzer = {},
 			lua_ls = {
 				-- cmd = {...},
 				-- filetypes { ...},
@@ -102,6 +101,31 @@ return {
 					server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
 					require("lspconfig")[server_name].setup(server)
 				end,
+			},
+		})
+
+		require("lspconfig").rust_analyzer.setup({
+			on_attach = on_attach,
+			capabilities = capabilities,
+			root_dir = function()
+				return vim.fn.getcwd()
+			end,
+			cmd = { "rustup", "run", "stable", "rust-analyzer" },
+			settings = {
+				rust_analyzer = {
+					useLibraryCodeForTypes = true,
+					autoSearchPaths = true,
+					autoImportCompletions = false,
+					reportMissingImports = true,
+					followImportForHints = true,
+
+					cargo = {
+						allFeatures = true,
+					},
+					checkOnSave = {
+						command = "cargo clippy",
+					},
+				},
 			},
 		})
 	end,
