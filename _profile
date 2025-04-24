@@ -4,3 +4,5 @@ export PATH="$PATH:$HOME/.local/bin/"
 # editor
 export VISUAL=nvim
 export EDITOR=VISUAL
+
+export XDG_CONFIG_HOME="$HOME/.config"
