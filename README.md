@@ -40,14 +40,13 @@ mkdir -p $HOME/.local/bin
 mv nvim-linux-x86_64.appimage $HOME/.local/bin/nvim
 ```
 
-**uv/ruff install for python**
+**uv install**
 ```
-# uv
 curl -LsSf https://astral.sh/uv/install.sh | sh
-# or
-cargo install --git https://github.com/astral-sh/uv uv
+```
 
-# ruff
+**ruff install**
+```
 uv tool install ruff
 ```
 
