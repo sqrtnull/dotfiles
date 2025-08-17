@@ -9,6 +9,11 @@ git clone https://github.com/sqrtnull/dotfiles.git $HOME/.config
 
 ## Installation
 
+**brew install**
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
 **Necessary packages**
 ```
 neovim
