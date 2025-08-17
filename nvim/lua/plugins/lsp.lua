@@ -80,5 +80,12 @@ return {
 				},
 			},
 		})
+		require("lspconfig").ruff.setup({
+			init_options = {
+				settings = {
+					organizeImports = true,
+				},
+			},
+		})
 	end,
 }
