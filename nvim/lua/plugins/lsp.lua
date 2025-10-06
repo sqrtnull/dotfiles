@@ -64,3 +64,4 @@ return {
 		vim.lsp.enable({ "rust_analyzer", "ruff" })
 	end,
 }
+-- vim: ts=2 sts=2 sw=2 et
