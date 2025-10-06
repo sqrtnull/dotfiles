@@ -128,7 +128,7 @@ require("lazy").setup({
 
 	require("plugins.lsp"),
 
-	require("plugins.nvim-cmp"),
+	require("plugins.blink_cmp"),
 
 	{
 		"stevearc/conform.nvim",
