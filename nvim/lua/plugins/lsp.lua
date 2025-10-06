@@ -55,37 +55,12 @@ return {
 
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
 		capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+		vim.lsp.config("*", { capabilities = capabilities })
 
-		require("lspconfig").rust_analyzer.setup({
-			on_attach = on_attach,
-			capabilities = capabilities,
-			root_dir = function()
-				return vim.fn.getcwd()
-			end,
+		vim.lsp.config("rust_analyzer", {
 			cmd = { "rustup", "run", "stable", "rust-analyzer" },
-			settings = {
-				rust_analyzer = {
-					useLibraryCodeForTypes = true,
-					autoSearchPaths = true,
-					autoImportCompletions = false,
-					reportMissingImports = true,
-					followImportForHints = true,
-
-					cargo = {
-						allFeatures = true,
-					},
-					checkOnSave = {
-						command = "cargo clippy",
-					},
-				},
-			},
 		})
-		require("lspconfig").ruff.setup({
-			init_options = {
-				settings = {
-					organizeImports = true,
-				},
-			},
-		})
+		vim.lsp.config("ruff", {})
+		vim.lsp.enable({ "rust_analyzer", "ruff" })
 	end,
 }
