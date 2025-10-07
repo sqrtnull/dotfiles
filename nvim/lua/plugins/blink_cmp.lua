@@ -9,6 +9,8 @@ return {
 			preset = "default",
 			["<C-j>"] = { "select_and_accept" },
 			["<C-y>"] = { "show", "show_documentation", "hide_documentation" },
+			["<C-l>"] = { "snippet_forward" },
+			["<C-h>"] = { "snippet_backward" },
 		},
 		appearance = {
 			nerd_font_variant = "mono",
