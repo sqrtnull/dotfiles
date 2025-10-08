@@ -1,6 +1,17 @@
 return {
 	"saghen/blink.cmp",
-	-- dependencies = { "rafamadriz/friendly-snippets" },
+	dependencies = {
+		"rafamadriz/friendly-snippets",
+		{
+			"L3MON4D3/LuaSnip",
+			version = "2.*",
+			build = "make install_jsregexp",
+			config = function()
+				require("luasnip.loaders.from_vscode").lazy_load()
+				require("luasnip.loaders.from_lua").load({ paths = { "~/.config/nvim/snippets" } })
+			end,
+		},
+	},
 	version = "1.*",
 	---@module 'blink.cmp'
 	---@type blink.cmp.Config
@@ -20,6 +31,7 @@ return {
 			default = { "lsp", "path", "snippets", "buffer" },
 		},
 		fuzzy = { implementation = "prefer_rust_with_warning" },
+		snippets = { preset = "luasnip" },
 	},
 	opts_extend = { "sources.default" },
 }
