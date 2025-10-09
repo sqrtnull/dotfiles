@@ -45,9 +45,7 @@ vim.keymap.set("n", "<leader>y", '"+y', { desc = "Yank to system clipboard" })
 vim.keymap.set("v", "<leader>y", '"+y', { desc = "Yank to system clipboard" })
 
 vim.api.nvim_create_autocmd("TextYankPost", {
-	callback = function()
-		vim.highlight.on_yank()
-	end,
+	callback = function() vim.highlight.on_yank() end,
 })
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -75,9 +73,7 @@ require("lazy").setup({
 		"kylechui/nvim-surround",
 		version = "*",
 		event = "VeryLazy",
-		config = function()
-			require("nvim-surround").setup({})
-		end,
+		config = function() require("nvim-surround").setup({}) end,
 	},
 
 	{ "kevinhwang91/nvim-bqf", event = "VeryLazy", opts = {} },
@@ -97,9 +93,7 @@ require("lazy").setup({
 		keys = {
 			{
 				"<leader>gs",
-				function()
-					require("gitsigns").toggle_signs()
-				end,
+				function() require("gitsigns").toggle_signs() end,
 				mode = { "n", "v" },
 				desc = "Toggle [G]it [S]igns",
 			},
@@ -124,7 +118,7 @@ require("lazy").setup({
 		end,
 	},
 
-	require("plugins.telescope"),
+	require("plugins.snacks"),
 
 	require("plugins.lsp"),
 
@@ -141,9 +135,7 @@ require("lazy").setup({
 		keys = {
 			{
 				"<leader>ff",
-				function()
-					require("conform").format({ async = true, lsp_fallback = true })
-				end,
+				function() require("conform").format({ async = true, lsp_fallback = true }) end,
 				mode = { "n", "v" },
 				desc = "[F]ormat [F]ile or selection",
 			},
@@ -183,9 +175,12 @@ require("lazy").setup({
 				indent = { enable = true },
 			})
 		end,
-		vim.keymap.set("n", "<leader>wh", function()
-			vim.notify(require("nvim-treesitter").statusline())
-		end, { desc = "[WH]ere am I?" }),
+		vim.keymap.set(
+			"n",
+			"<leader>wh",
+			function() vim.notify(require("nvim-treesitter").statusline()) end,
+			{ desc = "[WH]ere am I?" }
+		),
 	},
 
 	{
@@ -200,12 +195,16 @@ require("lazy").setup({
 				},
 			},
 		},
-    -- stylua: ignore
 		keys = {
 			{ "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
 			{ "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
 			{ "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
-			{ "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+			{
+				"R",
+				mode = { "o", "x" },
+				function() require("flash").treesitter_search() end,
+				desc = "Treesitter Search",
+			},
 			{ "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
 		},
 	},
