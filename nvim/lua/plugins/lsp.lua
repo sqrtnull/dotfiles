@@ -6,7 +6,7 @@ return {
 	},
 	config = function()
 		vim.api.nvim_create_autocmd("LspAttach", {
-			group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
+			group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
 			callback = function(event)
 				vim.diagnostic.config({ virtual_text = false, signs = false, underline = false })
 				vim.opt.formatoptions:remove({ "c", "r", "o" })
@@ -18,7 +18,6 @@ return {
 				map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
 				map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
 				map("K", vim.lsp.buf.hover, "Hover Documentation")
-				map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
 				map("<leader>id", function()
 					if vim.diagnostic.config().virtual_text then
@@ -27,26 +26,6 @@ return {
 						vim.diagnostic.config({ virtual_text = true, signs = true, underline = true })
 					end
 				end, "Toggle [I]nline [D]iagnostics")
-
-				if vim.lsp.inlay_hint then
-					map(
-						"<leader>ih",
-						function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end,
-						"Toggle [I]nlay [H]ints"
-					)
-				end
-
-				local client = vim.lsp.get_client_by_id(event.data.client_id)
-				if client and client.server_capabilities.documentHighlightProvider then
-					vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-						buffer = event.buf,
-						callback = vim.lsp.buf.document_highlight,
-					})
-					vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
-						buffer = event.buf,
-						callback = vim.lsp.buf.clear_references,
-					})
-				end
 			end,
 		})
 
