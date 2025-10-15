@@ -4,7 +4,10 @@ return {
 	lazy = false,
 	---@type snacks.Config
 	opts = {
-		bigfile = { enabled = true },
+		bigfile = {
+			enabled = true,
+			size = 1024 * 1024 * 1024, -- 1GB
+		},
 		explorer = { enabled = true },
 		input = { enabled = true },
 		picker = { enabled = true },
