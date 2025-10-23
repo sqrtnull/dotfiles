@@ -10,7 +10,16 @@ return {
 		},
 		explorer = { enabled = true },
 		input = { enabled = true },
-		picker = { enabled = true },
+		picker = {
+			enabled = true,
+			formatters = {
+				file = {
+					---@type "left"|"center"|"right"
+					truncate = "left",
+					min_width = 60,
+				},
+			},
+		},
 		notifier = { enabled = true },
 		scope = { enabled = true },
 		statuscolumn = { enabled = true },
