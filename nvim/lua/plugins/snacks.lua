@@ -19,6 +19,9 @@ return {
 					min_width = 60,
 				},
 			},
+			main = {
+				file = false,
+			},
 		},
 		notifier = { enabled = true },
 		scope = { enabled = true },
