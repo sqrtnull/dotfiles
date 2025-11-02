@@ -8,7 +8,6 @@ return {
 			enabled = true,
 			size = 1024 * 1024 * 1024, -- 1GB
 		},
-		explorer = { enabled = true },
 		input = { enabled = true },
 		picker = {
 			enabled = true,
@@ -38,7 +37,6 @@ return {
 		{ "<leader>/", function() Snacks.picker.grep() end, desc = "Grep" },
 		{ "<leader>:", function() Snacks.picker.command_history() end, desc = "Command History" },
 		{ "<leader>n", function() Snacks.picker.notifications() end, desc = "Notification History" },
-		{ "<leader>e", function() Snacks.explorer() end, desc = "File Explorer" },
 		-- find
 		{ "<leader>fb", function() Snacks.picker.buffers() end, desc = "Buffers" },
 		{
