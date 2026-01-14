@@ -9,14 +9,8 @@ git clone https://github.com/sqrtnull/dotfiles.git $HOME/.config
 
 ## Installation
 
-**brew install**
 ```
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-```
-
-**install tmux, lazygit, fzf**
-```
-brew install tmux lazygit fzf
+./setup.sh
 ```
 
 **rust install**
@@ -27,22 +21,20 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 rustup component add rust-analyzer
 ```
 
-**neovim install**
-```
-curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.appimage
-chmod u+x nvim-linux-x86_64.appimage
-mkdir -p $HOME/.local/bin
-mv nvim-linux-x86_64.appimage $HOME/.local/bin/nvim
-```
-
 **cargo-binstall install**
 ```
 curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
 ```
 
-**ripgrep install**
+**cargo install**
 ```
-cargo binstall ripgrep
+ripgrep
+uv
+stylua
+typst-cli
+mdbook
+zellij
+just
 ```
 
 **uv install**
@@ -58,17 +50,20 @@ cargo binstall --locked uv
 uv tool install ruff
 ```
 
-**stylua install**
+**brew install**
 ```
-cargo binstall stylua
-```
-
-**typst-cli install**
-```
-cargo binstall --locked typst-cli
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-**mdbook install**
+**install tmux, lazygit, fzf**
 ```
-cargo binstall mdbook
+brew install tmux lazygit fzf
+```
+
+**neovim install (linux)**
+```
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.appimage
+chmod u+x nvim-linux-x86_64.appimage
+mkdir -p $HOME/.local/bin
+mv nvim-linux-x86_64.appimage $HOME/.local/bin/nvim
 ```
