@@ -10,7 +10,7 @@ rustup component add rust-analyzer
 curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
 
 # ripgrep uv typst-cli
-cargo binstall --locked ripgrep uv typst-cli
+cargo binstall --locked ripgrep uv typst-cli just zellij
 
 # run in ~/.local/bin
 mkdir -p $HOME/.local/bin
