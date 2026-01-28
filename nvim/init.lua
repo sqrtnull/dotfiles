@@ -214,6 +214,14 @@ require("lazy").setup({
 		opts = { use_default_keymaps = false },
 	},
 
+	{
+		"chomosuke/typst-preview.nvim",
+		ft = "typst",
+		version = "1.*",
+		opts = {},
+		keys = { { "<leader>tp", mode = { "n" }, "<CMD>TypstPreviewToggle<CR>", desc = "Toggle Typst Preview" } },
+	},
+
 	-- environment specific plugins and testing
 	{ import = "plugins.custom" },
 })
