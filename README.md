@@ -35,6 +35,7 @@ typst-cli
 mdbook
 zellij
 just
+fd-find
 ```
 
 **uv install**
