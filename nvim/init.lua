@@ -24,8 +24,8 @@ vim.opt.timeoutlen = 300
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
-vim.opt.number = true
-vim.opt.relativenumber = true
+vim.opt.number = false
+vim.opt.relativenumber = false
 vim.opt.cursorline = true
 vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
