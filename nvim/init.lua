@@ -191,6 +191,9 @@ require("lazy").setup({
 				search = {
 					enabled = false,
 				},
+				char = {
+					enabled = false,
+				},
 			},
 		},
 		keys = {
